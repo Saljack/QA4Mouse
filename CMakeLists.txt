@@ -1,11 +1,17 @@
-project(QA4Tech)
+project(qa4mouse)
 cmake_minimum_required(VERSION 2.6)
 find_package(Qt4 REQUIRED)
 
-include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+find_package(libgmouse REQUIRED)
 
-set(QA4Tech_SRCS QA4Tech.cpp main.cpp)
-qt4_automoc(${QA4Tech_SRCS})
-add_executable(QA4Tech ${QA4Tech_SRCS})
-target_link_libraries(QA4Tech ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
-install(TARGETS QA4Tech RUNTIME DESTINATION bin)
+include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${LIBGMOUSE_INCLUDE_DIRS})
+
+set(QA4Mouse_SRCS QA4Mouse.cpp main.cpp A4Tool.cpp)
+set(QA4Mouse_RCCS resource.qrc)
+
+qt4_automoc(${QA4Mouse_SRCS})
+qt4_add_resources(QA4Mouse_RCCS_SRCS ${QA4Mouse_RCCS})
+add_executable(QA4Mouse A4Device.cpp ${QA4Mouse_SRCS} ${QA4Mouse_RCCS_SRCS})
+target_link_libraries(QA4Mouse ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${LIBGMOUSE_LIBRARIES})
+install(TARGETS QA4Mouse RUNTIME DESTINATION bin)

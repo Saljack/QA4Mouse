@@ -3,12 +3,12 @@
 
 #include <QtGui/QMainWindow>
 
-class QA4Tech : public QMainWindow
+class QA4Mouse : public QMainWindow
 {
 Q_OBJECT
 public:
-    QA4Tech();
-    virtual ~QA4Tech();
+    QA4Mouse();
+    virtual ~QA4Mouse();
 };
 
 #endif // QA4Tech_H

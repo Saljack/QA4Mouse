@@ -12,6 +12,8 @@
 #
 #  (Changes for libusb) Copyright (c) 2008 Kyle Machulis <kyle@nonpolynomial.com>
 #
+#  (Changes for libgmouse) Copyright (c) 2014 Tomas Poledny <saljacky@gmail.com>
+#
 # Redistribution and use is allowed according to the terms of the New BSD license.
 # For details see the accompanying COPYING-CMAKE-SCRIPTS file.
 #
@@ -37,10 +39,10 @@ else (LIBGMOUSE_LIBRARIES AND LIBGMOUSE_INCLUDE_DIRS)
     NAMES
       gmouse
     PATHS
-      /usr/lib/libgmouse
-      /usr/local/lib/libgmouse
-      /opt/local/lib/libgmouse
-      /sw/lib/libgmouse
+      /usr/lib/
+      /usr/local/lib/
+      /opt/local/lib/
+      /sw/lib/
   )
 
   set(LIBGMOUSE_INCLUDE_DIRS

@@ -1,6 +1,17 @@
  <!DOCTYPE RCC>
  <RCC version="1.0">
 	 <qresource prefix="images">
-		 <file alias="icon.png">resource/icon.png</file>
+		 <file alias="icon.png">resource/qa4mouse.png</file>
+		 <file alias="profile-1.png">resource/profile-1.png</file>
+		 <file alias="profile-2.png">resource/profile-2.png</file>
+		 <file alias="profile-3.png">resource/profile-3.png</file>
+		 <file alias="profile-4.png">resource/profile-4.png</file>
+		 <file alias="profile-5.png">resource/profile-5.png</file>
+		 <file alias="icon-low.png">resource/icon-low.png</file>
+		 <file alias="profile-1-low.png">resource/profile-1-low.png</file>
+		 <file alias="profile-2-low.png">resource/profile-2-low.png</file>
+		 <file alias="profile-3-low.png">resource/profile-3-low.png</file>
+		 <file alias="profile-4-low.png">resource/profile-4-low.png</file>
+		 <file alias="profile-5-low.png">resource/profile-5-low.png</file>
 	 </qresource>
  </RCC>

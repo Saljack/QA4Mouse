@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Application;Utility;
+Comment=Tool for settings A4 Tech mouse G series
+Exec=qa4mouse
+Name=QA4Mouse
+GenericName=QA4Mouse
+Icon=qa4mouse.png
+StartupNotify=true
+Terminal=false
+Type=Application

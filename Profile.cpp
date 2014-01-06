@@ -22,66 +22,75 @@
  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  SUCH DAMAGE.
-*/
-#ifndef A4Tool_H
-#define A4Tool_H
+ */
 
-#include <libgmouse/system_a4.h>
-#include <libgmouse/control_a4.h>
+#include "Profile.h"
+#include <QString>
+#include "A4Tool.h"
 
-#define LITLE_SLEEP   250000
+Profile::Profile(int id, QString name, bool enabled): id(id), profileName(name), enabled(enabled)
+{
 
-enum WakeAfter {
-    CLICK = A4_WAKE_BY_CLICK ,
-    MOVE = A4_WAKE_BY_MOVE,
-    UNKNOWN = 0x0080,
-};
+}
 
-enum ChannelMod {
-    AUTO = A4_CHAN_AUTO,
-    MANUAL = A4_CHAN_MANUAL,
-    ERROR = -1,
+Profile::~Profile()
+{
 
-};
+}
 
-int pair_func(a4_device* dev, int argc, char* argv[]);
+Profile Profile::getProfile(int id)
+{
+	Profile prof(id, QString("Profile %1").arg(id), true);
+	return prof;
+}
 
-int dump_func(a4_device* dev, int argc, char* argv[]);
+QIcon Profile::getIconWithBattery(A4Device& dev)
+{
+	dev.openDevice();
+	int battery = getBatteryMouse(dev.device);
+	if(battery < A4Device::batteryWarningLevel){
+		return getLowIcon();
+	}
+	return getIcon();
+}
 
-bool initMultifunc(a4_device* dev);
 
-bool isInit(a4_device* dev);
 
-int getProfile(a4_device* dev);
+QIcon Profile::getIcon()
+{
+    if (id > 0 && id < 6) {
+        QString iconPath = QString(":/images/profile-%1.png").arg(id);
+        return QIcon(iconPath);
+    }
+    return QIcon(":/images/icon.png");
+}
 
-bool setProfile(a4_device* dev, int profile);
+QIcon Profile::getLowIcon()
+{
+	if (id > 0 && id < 6) {
+		QString iconPath = QString(":/images/profile-%1-low.png").arg(id);
+		return QIcon(iconPath);
+	}
+    return QIcon(":/images/icon-low.png");
+}
 
-int getSignal(a4_device* dev);
+QString Profile::name()
+{
 
-int getBatteryMouse(a4_device* dev);
+    return profileName;
+}
 
-int getBatteryKeyboard(a4_device* dev);
+void Profile::setName(QString name)
+{
+    profileName = name;
+}
 
-int getMrr(a4_device* dev);
+bool Profile::isEnabled()
+{
+	return enabled;
+}
 
-bool setMrr(a4_device* dev, int mrr);
-
-int getWakeUpTime(a4_device* dev);
-
-WakeAfter getWakeUpBy(a4_device* dev);
-
-bool setWakeUp(a4_device* dev, int time, WakeAfter after);
-
-int getDistance(a4_device* dev);
-
-bool setDistance(a4_device* dev, int idx);
-
-int getChannel(a4_device* dev);
-
-ChannelMod getChannelMode(a4_device* dev);
-
-bool setChannel(a4_device* dev, int channel, ChannelMod mode);
-
-a4_device* getDevice();
-
-#endif // A4Tool_H
+void Profile::setEnabled(bool enabled)
+{
+	this->enabled = enabled;
+}

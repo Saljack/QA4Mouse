@@ -1,0 +1,7 @@
+This software is under The BSD 2-Clause License.
+This software is based on init-gmouse (a4_tool) from Marisa-Chan https://github.com/Marisa-Chan/init-gmouse
+
+The Program is designed only for G-series. Support for other mice like X7-series is incomplete, but some functions may work.
+If you have an "oscar" mouse please use wireshark and virtualbox with windows to capture and compare bytes that are sent by original program.
+
+You need libgmouse library.

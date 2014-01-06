@@ -1,7 +1,7 @@
 /*
  Copyright (c) 2014 Tomas Poledny
  All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
@@ -10,7 +10,7 @@
  2. Redistributions in binary form must reproduce the above copyright
  notice, this list of conditions and the following disclaimer in the
  documentation and/or other materials provided with the distribution.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -66,7 +66,7 @@ QA4Mouse::QA4Mouse() : showedInfoAboutMinimaze(false), initAll(true)
     timerCheck = new QTimer(this);
     connect(timerCheck, SIGNAL(timeout()), SLOT(checkTime()));
     timerCheck->start(updateInterval);
-	checkTime();
+    checkTime();
 }
 
 QA4Mouse::~QA4Mouse()
@@ -182,17 +182,22 @@ void QA4Mouse::createSystemTrayMenu()
 
 void QA4Mouse::profileWasChanged(bool showMessage)
 {
-    dev->openDevice();
-    int i = getProfile(dev->device);
-    if (i >= 0 && i < 5) {
-        Profile& p = profiles[i];
-        if (showMessage) {
-            showSystemTrayMessage(tr("Profile is %1 %2").arg(p.id).arg(p.name()));
+    if (dev->numberOfDevice() > 0) {
+        int i = getProfile(dev->device);
+        if (i >= 0 && i < 5) {
+            Profile& p = profiles[i];
+            if (showMessage) {
+                showSystemTrayMessage(tr("Profile is %1 %2").arg(p.id).arg(p.name()));
+            }
+            systemTray->setIcon(p.getIconWithBattery(*dev));
         }
-        systemTray->setIcon(p.getIconWithBattery(*dev));
+        systemTray->setToolTip(getInfoString());
+        statusBarLabel->setText(getInfoOneLineString());
+    }else{
+		systemTray->setIcon(QIcon(":/images/icon-missing.png"));
+		systemTray->setToolTip(tr("No mouses found!"));
     }
-    systemTray->setToolTip(getInfoString());
-    statusBarLabel->setText(getInfoOneLineString());
+
 }
 
 

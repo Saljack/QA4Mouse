@@ -8,6 +8,7 @@
 		 <file alias="profile-4.png">resource/profile-4.png</file>
 		 <file alias="profile-5.png">resource/profile-5.png</file>
 		 <file alias="icon-low.png">resource/icon-low.png</file>
+		 <file alias="icon-missing.png">resource/icon-missing.png</file>
 		 <file alias="profile-1-low.png">resource/profile-1-low.png</file>
 		 <file alias="profile-2-low.png">resource/profile-2-low.png</file>
 		 <file alias="profile-3-low.png">resource/profile-3-low.png</file>

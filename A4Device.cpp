@@ -49,6 +49,15 @@ bool A4Device::openDevice()
     return isOpen;
 }
 
+int A4Device::numberOfDevice()
+{
+	if(!openDevice()){
+		return 0;
+	}
+	return a4_device_mouse_count(device);
+}
+
+
 void A4Device::closeDevice()
 {
     if (isOpen) {

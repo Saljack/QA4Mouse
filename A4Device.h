@@ -51,6 +51,8 @@ public:
      * @return bool It returns true if device is opened or false if it is not.
      */
     bool isDeviceOpen() const;
+	
+	int numberOfDevice();
 
     /**
      * @brief A4 device structure
@@ -58,7 +60,7 @@ public:
      */
     a4_device* device;
 	
-    static const int batteryWarningLevel = 85;
+    static const int batteryWarningLevel = 25;
 private:
     bool isOpen;
 };
